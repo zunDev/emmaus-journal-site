@@ -24,13 +24,16 @@
       color-scheme: light;
     }
     * { box-sizing: border-box; }
-    html { background: var(--paper); }
+    /* 종이 결은 html에 깔아야 글이 짧은 페이지에서도 화면 끝까지 이어진다. */
+    html {
+      background: var(--paper) url("{{ '/assets/paper-grain.png' | relative_url }}") repeat;
+      background-size: 192px 192px;
+    }
     body {
       margin: 0;
       color: var(--ink);
       font: 16px/1.75 var(--text);
-      background: var(--paper) url("{{ '/assets/paper-grain.png' | relative_url }}") repeat;
-      background-size: 192px 192px;
+      background: transparent;
       -webkit-text-size-adjust: 100%;
     }
     .wrap {
