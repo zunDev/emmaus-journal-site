@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'ko-KR' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title and page.title != site.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <link rel="icon" type="image/png" href="{{ '/assets/icon.png' | relative_url }}">
+  <link rel="apple-touch-icon" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap">
+  <style>
+    /* 앱과 같은 아이보리 종이, 잉크색 글씨, 아이콘 해에서 가져온 주황 강조색 */
+    :root {
+      --paper: #F8F1E4;
+      --ink: #342C24;
+      --muted: #6E6253;
+      --accent: #9E4A1E;   /* 종이 위 글자 대비 4.5:1 이상 */
+      --card: rgba(52, 44, 36, 0.06);
+      --rule: rgba(52, 44, 36, 0.14);
+      --pen: "Poor Story", "Apple SD Gothic Neo", sans-serif;
+      --text: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+      color-scheme: light;
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--paper); }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font: 16px/1.75 var(--text);
+      background: var(--paper) url("{{ '/assets/paper-grain.png' | relative_url }}") repeat;
+      background-size: 192px 192px;
+      -webkit-text-size-adjust: 100%;
+    }
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding-block: 32px 64px;
+      padding-left: max(20px, env(safe-area-inset-left, 0px));
+      padding-right: max(20px, env(safe-area-inset-right, 0px));
+    }
+    header.site { display: flex; align-items: center; gap: 14px; margin-bottom: 36px; }
+    header.site a { display: flex; align-items: center; gap: 14px; color: var(--ink); text-decoration: none; }
+    header.site img { width: 56px; height: 56px; border-radius: 13px; box-shadow: 0 2px 8px rgba(52, 44, 36, 0.18); }
+    header.site .name { font-family: var(--pen); font-size: 28px; line-height: 1.2; }
+    header.site .sub { display: block; font-family: var(--pen); font-size: 16px; color: var(--muted); }
+    h1, h2, h3 { font-family: var(--pen); font-weight: 400; line-height: 1.3; text-wrap: balance; }
+    h1 { font-size: 34px; margin: 0 0 8px; }
+    h2 { font-size: 25px; margin: 40px 0 8px; color: var(--accent); }
+    h3 { font-size: 21px; margin: 28px 0 6px; }
+    hr { border: 0; border-top: 1px dashed var(--rule); margin: 56px 0; }
+    a { color: var(--accent); text-underline-offset: 3px; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+    strong { color: var(--ink); }
+    ul { padding-left: 1.3em; }
+    li::marker { color: var(--accent); }
+    p, li { overflow-wrap: anywhere; }
+    .table-wrap { overflow-x: auto; margin: 16px 0; }
+    table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 14px; overflow: hidden; font-size: 15px; }
+    th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--rule); }
+    th { font-family: var(--pen); font-weight: 400; font-size: 17px; color: var(--accent); }
+    tr:last-child td { border-bottom: 0; }
+    footer.site { margin-top: 64px; padding-top: 20px; border-top: 1px dashed var(--rule); font-size: 14px; color: var(--muted); }
+    @media (max-width: 480px) {
+      h1 { font-size: 28px; }
+      h2 { font-size: 22px; }
+      header.site img { width: 48px; height: 48px; border-radius: 11px; }
+      header.site .name { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <a href="{{ '/' | relative_url }}">
+        <img src="{{ '/assets/icon.png' | relative_url }}" alt="" width="56" height="56">
+        <span><span class="name">엠마오 저널</span><span class="sub">하루 한 문장 신앙일기</span></span>
+      </a>
+    </header>
+    <main>
+      {{ content | replace: '<table>', '<div class="table-wrap"><table>' | replace: '</table>', '</table></div>' }}
+    </main>
+    <footer class="site">
+      <a href="{{ '/privacy.html' | relative_url }}">개인정보처리방침</a> ·
+      <a href="{{ '/support.html' | relative_url }}">지원</a> ·
+      문의 emmaus@zundev.dev
+    </footer>
+  </div>
+</body>
+</html>
